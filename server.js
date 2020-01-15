@@ -61,7 +61,7 @@ app.get("/scrape", function(req, res) {
     $("article h2").each(function(i, element) {
       // Save an empty result object
       var result = {};
-
+        console.log($(this).children("a"));
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
         .children("a")
@@ -74,11 +74,11 @@ app.get("/scrape", function(req, res) {
       db.Article.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
-          console.log(dbArticle);
+          //console.log(dbArticle);
         })
         .catch(function(err) {
           // If an error occurred, log it
-          console.log(err);
+          //console.log(err);
         });
     });
 

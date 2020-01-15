@@ -1,9 +1,16 @@
 <div id="wrapper">
-    <h1>News Scraper</h1>
-    <div id="articles">
-        {{#each articles}}
-                {{> articles/article-block}}
-        {{/each}}
+    <div class="container">
+        <h1>News Scraper</h1>
+        <button type="button" class="btn btn-info" id="scrape">Scrape</button>
+        <div class="row">
+            <div id="articles" class="col-6">
+                {{#each articles}}
+                    <div class="row">
+                        {{> articles/article-block}}
+                    </div>
+                {{/each}}
+            </div>
+            <div id="comments" class="col-6"></div>
+        </div>
     </div>
-    <div id="comments"></div>
 </div>

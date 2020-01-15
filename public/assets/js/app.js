@@ -1,8 +1,19 @@
-
+$(document).on("click", "#scrape", function() {
+    $.ajax({
+        method: "GET",
+        url: "/scrape"
+    })
+    .then(function(data) {
+        console.log("scrape complete")
+        location.reload();
+    })
+});
+  
+  
   // Whenever someone clicks a p tag
-  $(document).on("click", "h2", function() {
-    // Empty the notes from the note section
+  $(document).on("click", ".comment",  function() {
     console.log("click");
+    // Empty the notes from the note section
     $("#comments").empty();
     // Save the id from the p tag
     var thisId = $(this).attr("data-id");
@@ -18,11 +29,13 @@
         // The title of the article
         $("#comments").append("<h3>" + data.title + "</h3>");
         // An input to enter a new title
-        $("#comments").append("<input id='titleinput' name='title' >");
+        $("#comments").append("<div class=form-group id=title-input></div>");
+        $("#title-input").append("<input id='titleinput' name='title' >");
+        $("#comments").append("<div class=form-group id=body-input></div>");
         // A textarea to add a new note body
-        $("#comments").append("<textarea id='bodyinput' name='body'></textarea>");
+        $("#body-input").append("<textarea id='bodyinput' name='body'></textarea>");
         // A button to submit a new note, with the id of the article saved to it
-        $("#comments").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+        $("#comments").append("<button type=button class='btn btn-light' data-id='" + data._id + "' id='savecomment'>Save</button>");
   
         // If there's a note in the article
         if (data.comment) {
@@ -34,8 +47,7 @@
       });
   });
   
-  // When you click the savenote button
-  $(document).on("click", "#savenote", function() {
+  $(document).on("click", "#savecomment", function() {
     // Grab the id associated with the article from the submit button
     var thisId = $(this).attr("data-id");
   
